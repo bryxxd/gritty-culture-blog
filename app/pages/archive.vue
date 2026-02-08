@@ -1,0 +1,4 @@
+<script setup></script>
+<template>
+    <h1>Archive</h1>
+</template>
