@@ -1,6 +1,20 @@
-# Nuxt Minimal Starter
+# Gritty Culture Blog
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+> **Portfolio Website**
+> 
+> This is a portfolio project demonstrating frontend development skills by implementing a professional design into a fully functional web application.
+
+## Design Credit
+
+This project is a code implementation of a design sourced from the [Figma Community](https://www.figma.com).
+
+- **Design:** [Gritty Culture Blog](https://www.figma.com/community/file/1573023038441022384)
+- **Author:** [Figma](https://www.figma.com)
+
+This project showcases my ability to:
+- Translate Figma designs into pixel-perfect, responsive code
+
+*Note: This is a non-commercial portfolio project created for educational and demonstration purposes. The original design remains the property of the creator/Figma, Inc.*
 
 ## Setup
 
