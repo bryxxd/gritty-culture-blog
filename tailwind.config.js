@@ -12,12 +12,14 @@ export default {
     screens: {
       sm: "799px",
       md: "800px",
-      lg: "1200px",
+      lg: "1280px",
+      xl: "1820px",
     },
     maxWidth: {
       sm: "799px",
       md: "800px",
       lg: "1280px",
+      xl : "1820px",
     },
     extend: {
       fontFamily: {

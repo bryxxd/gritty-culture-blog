@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer base {
+    body {
+        @apply text-headline-1 bg-background-1;
+    }
+}
+
+@layer components {
+    .layout {
+        @apply max-w-xl mx-auto px-[10px];
+    }
+}
