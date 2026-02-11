@@ -31,7 +31,7 @@ export default {
       colors: {
         "background-1": "#0F0E0E",
         "background-2": "#1F1F1F",
-        "background-3": "#555659",
+        "background-3": "#F5F5F5",
         "background-4": "#FFFFFF",
         "background-5": "#FF5700",
         "background-6": "#32CE57",
@@ -42,6 +42,7 @@ export default {
         "paragraph-4": "#D1D2D8",
         "headline-1": "#F6F8FB",
         "headline-2": "#DBE0EC",
+        "divider-1" : "#555659"
       },
       keyframes: {
         marquee: {
@@ -54,6 +55,9 @@ export default {
         "marquee-md": "marquee 20s linear infinite",
         "marquee-sm": "marquee 10s linear infinite",
         pause: "paused",
+      },
+      fontSize: {
+        "footer-heading" : "clamp(50px, 13vw, 200px)"
       },
     },
   },

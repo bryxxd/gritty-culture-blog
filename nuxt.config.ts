@@ -8,9 +8,13 @@ export default defineNuxtConfig({
   },
   googleFonts: {
     families: {
-      "Instrument Serif": [400, "400i", 500, "500i", 600, "600i", 700, "700i"],
+      "Instrument Serif": {
+        wght: [400],
+        ital: [400],
+      },
       "Tilt Warp": [400, 500, 600, 700],
       "Geist": [400, 500, 600, 700],
     },
+    download: true,
   },
 });
