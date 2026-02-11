@@ -5,7 +5,11 @@
 
 @layer base {
     body {
-        @apply text-headline-1 bg-background-1;
+        @apply text-headline-1 bg-background-1 cursor-default-default;
+    }
+
+    a, button {
+        @apply cursor-default-pointer;
     }
 }
 

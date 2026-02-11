@@ -59,6 +59,10 @@ export default {
       fontSize: {
         "footer-heading" : "clamp(50px, 13vw, 200px)"
       },
+      cursor : {
+        "default-default" : "url('~/assets/img/cursor-default.png'), default",
+        "default-pointer" : "url('~/assets/img/cursor-hover.png'), pointer"
+      }
     },
   },
   plugins: [],
