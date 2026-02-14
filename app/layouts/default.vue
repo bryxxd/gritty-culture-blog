@@ -1,8 +1,34 @@
 <script setup>
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger)
+
 const route = useRoute();
 const isTopPage = computed(() => route.path === "/");
 const marqueeText =
   "Independent writing on music, film, and visual culture—one deep cut at a time.";
+
+
+onMounted(() => {
+  gsap.fromTo("#logo",
+    { rotation: 0 },
+    {
+      rotation: 180,
+      ease: "none",
+      scrollTrigger: {
+        trigger: "body",
+        scrub: true,
+        start: "top top",
+        end: "bottom bottom",
+      },
+    }
+  )
+})
+
+watch(() => route.path, () => {
+  ScrollTrigger.refresh()
+})
+
 </script>
 
 <template>

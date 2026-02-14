@@ -10,7 +10,7 @@ import "swiper/css";
     <HeaderSection title="About" />
 
     <section>
-        <swiper :slides-per-view="3" :space-between="36" @swiper="onSwiper" @slideChange="onSlideChange" >
+        <swiper :slides-per-view="3" :space-between="36"  >
             <swiper-slide class="self-center">
                 <img src="~/assets/img/about/img-polaroid.png" alt="" />
             </swiper-slide>
