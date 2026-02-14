@@ -12,7 +12,7 @@ defineProps<{
 
 <template>
      <div >
-        <a :href="`/articles/${article.id}`" class="relative block h-[460px] md:h-[500px] lg:h-[700px] group rounded-lg overflow-hidden">
+        <NuxtLink :to="`/article/${article.id}`" class="relative block h-[460px] md:h-[500px] lg:h-[700px] group rounded-lg overflow-hidden">
           <img :src="article.image" alt=""
             class="rounded-lg w-full h-full object-cover md:group-hover:scale-[1.1] md:group-hover:blur-md transition-blur transition-scale duration-300 ease-out" />
           <div
@@ -24,6 +24,6 @@ defineProps<{
               <p>{{ article.date }}</p>
             </div>
           </div>
-        </a>
+        </NuxtLink>
       </div>
 </template>

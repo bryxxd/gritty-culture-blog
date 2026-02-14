@@ -33,7 +33,7 @@ watch(() => route.path, () => {
 
 <template>
   <div
-    class="pointer-events-none fixed inset-0 z-[9999] bg-[url('~/assets/img/bg-noise.png')] bg-repeat bg-[length:100%_60px] mix-blend-difference opacity-50"
+    class="pointer-events-none fixed inset-0 z-[9999] bg-[url('~/assets/img/bg-noise.png')] bg-repeat bg-[length:100%_100px] mix-blend-difference opacity-50"
     aria-hidden="true" />
 
   <Marquee :marquee-text="marqueeText" :class="isTopPage ? 'block' : 'hidden'" />
