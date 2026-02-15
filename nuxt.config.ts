@@ -17,4 +17,9 @@ export default defineNuxtConfig({
     },
     download: true,
   },
+  runtimeConfig: {
+    public: {
+      wpGraphqlUrl: process.env.NUXT_PUBLIC_WP_GRAPHQL_URL,
+    }
+  }
 });

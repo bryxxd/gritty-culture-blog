@@ -1,6 +1,9 @@
 <script setup lang="ts">
 const { data: articlesData } = await useFetch("/api/articles");
-const articlesList = computed(() => articlesData.value?.articles.slice(0, 4) || [])
+const articlesList = computed(() => articlesData.value?.articles.slice(0, 4) || []);
+
+const { getCinemaSelects } = useCinemaSelects();
+const { data: cinemaSelects } = await useAsyncData('cinemaSelects', () => getCinemaSelects())
 
 </script>
 
@@ -64,14 +67,12 @@ const articlesList = computed(() => articlesData.value?.articles.slice(0, 4) || 
             </tr>
           </thead>
           <tbody class="text-paragraph-2 font-semibold">
-            <tr v-for="n in 10" :key="n"
+            <tr v-for="cinema in cinemaSelects" :key="cinema.id"
               class="grid grid-cols-[repeat(4,149px)] gap-4 md:grid-cols-[1fr,160px,344px,1fr] border-b-[1px] border-divider-1 border-dashed">
-              <td class="py-4">Static Bloom</td>
-              <td class="py-4">2004</td>
-              <td class="py-4">Hazy, melancholic</td>
-              <td class="py-4 text-right">
-                Mood-driven editing and a killer score
-              </td>
+              <td class="py-4">{{ cinema.title }}</td>
+              <td class="py-4">{{ cinema.cinemaFields.cinemaYear }}</td>
+              <td class="py-4">{{ cinema.cinemaFields.cinemaMood }}</td>
+              <td class="py-4 text-right">{{ cinema.cinemaFields.cinemaWhyWatch }}</td>
             </tr>
           </tbody>
         </table>
