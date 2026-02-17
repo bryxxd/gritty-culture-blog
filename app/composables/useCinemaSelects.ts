@@ -13,9 +13,10 @@ export const useCinemaSelects = () => {
             id
             title
             cinemaFields {
-              cinemaMood
-              cinemaYear
-              cinemaWhyWatch
+              cinema_mood
+              cinema_year
+              cinema_why_watch
+              
             }
           }
         }

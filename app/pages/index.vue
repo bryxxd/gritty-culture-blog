@@ -3,8 +3,10 @@ const { data: articlesData } = await useFetch("/api/articles");
 const articlesList = computed(() => articlesData.value?.articles.slice(0, 4) || []);
 
 const { getCinemaSelects } = useCinemaSelects();
-const { data: cinemaSelects } = await useAsyncData('cinemaSelects', () => getCinemaSelects())
+const { data: cinemaSelects } = await useAsyncData('cinemaSelects', () => getCinemaSelects());
 
+const { getFeaturedAlbum } = useFeaturedAlbum()
+const { data: featuredAlbum } = await useAsyncData('featuredAlbums', () => getFeaturedAlbum());
 </script>
 
 <template>
@@ -35,16 +37,19 @@ const { data: cinemaSelects } = await useAsyncData('cinemaSelects', () => getCin
         Featured<br />
         Album
       </h2>
-      <div class="relative mx-auto max-w-[255px] md:max-w-[600px] lg:max-w-[840px] -mt-[10px] lg:-mt-[30px]">
-        <img src="~/assets/img/index/featured-album.jpg" class="w-full shadow-[0px_-20px_20px_0px_rgba(0,_0,_0,_0.25)]"
-          alt="Album cover for 'False Memory' by Artifact — abstract blue and white geometric blur with gothic-style typography" />
-        <div class="mt-8 text-lg md:text-xl text-center">
-          <h3 class="mb-2">False Memory by Artifact</h3>
-          <NuxtLink
-            class="before:content[''] before:bg-[url('~/assets/img/index/featured-play.svg')] before:bg-no-repeat before:bg-contain before:inline-block before:w-[14px] before:h-[14px] inline-flex items-center md:hover:opacity-50 transition-opacity duration-300 ease-out"
-            to="#">Listen now</NuxtLink>
+      <template v-for="value in featuredAlbum" :key="value.id">
+        <div class="relative mx-auto max-w-[255px] md:max-w-[600px] lg:max-w-[840px] -mt-[10px] lg:-mt-[30px]">
+          <img :src="value.albumFields.album_cover.node.sourceUrl" :alt="value.albumFields.album_cover.node.altText"
+            class="w-full shadow-[0px_-20px_20px_0px_rgba(0,_0,_0,_0.25)]" />
+          <div class="mt-8 text-lg md:text-xl text-center">
+            <h3 class="mb-2">{{ value.title }} by {{ value.albumFields.album_artist }}</h3>
+            <NuxtLink
+              class="before:content[''] before:bg-[url('~/assets/img/index/featured-play.svg')] before:bg-no-repeat before:bg-contain before:inline-block before:w-[14px] before:h-[14px] inline-flex items-center md:hover:opacity-50 transition-opacity duration-300 ease-out"
+              :to="value.albumFields.album_url" target="_blank" rel="ugc">Listen now</NuxtLink>
+          </div>
         </div>
-      </div>
+      </template>
+
     </div>
   </section>
 
@@ -70,9 +75,9 @@ const { data: cinemaSelects } = await useAsyncData('cinemaSelects', () => getCin
             <tr v-for="cinema in cinemaSelects" :key="cinema.id"
               class="grid grid-cols-[repeat(4,149px)] gap-4 md:grid-cols-[1fr,160px,344px,1fr] border-b-[1px] border-divider-1 border-dashed">
               <td class="py-4">{{ cinema.title }}</td>
-              <td class="py-4">{{ cinema.cinemaFields.cinemaYear }}</td>
-              <td class="py-4">{{ cinema.cinemaFields.cinemaMood }}</td>
-              <td class="py-4 text-right">{{ cinema.cinemaFields.cinemaWhyWatch }}</td>
+              <td class="py-4">{{ cinema.cinemaFields.cinema_year }}</td>
+              <td class="py-4">{{ cinema.cinemaFields.cinema_mood }}</td>
+              <td class="py-4 text-right">{{ cinema.cinemaFields.cinema_why_watch }}</td>
             </tr>
           </tbody>
         </table>
