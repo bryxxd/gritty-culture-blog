@@ -1,8 +1,8 @@
 <script setup lang="ts">
-const { data: articlesData } = await useFetch("/api/articles");
-const articlesList = computed(
-    () => articlesData.value?.articles || [],
-);
+
+const { getArticles } = useArticles();
+const { data: articles } = await useAsyncData('articles', () => getArticles());
+
 const marqueeText = "End of reel   ·  Fin  ·  "
 </script>
 <template>
@@ -10,7 +10,7 @@ const marqueeText = "End of reel   ·  Fin  ·  "
 
     <section class="layout text-lg md:text-xl mt-[10px]">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-[10px]">
-            <ArticleList v-for="article in articlesList" :key="article.id" :article="article" />
+            <ArticleList v-for="article in articles" :key="article.id" :article="article" />
         </div>
     </section>
 

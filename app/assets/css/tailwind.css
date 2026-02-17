@@ -24,7 +24,7 @@
     }
 
     p {
-        @apply text-[clamp(20px,2.5vw,16px)]/[140%]
+        @apply text-[clamp(20px,2.5vw,16px)]/[140%] my-12;
     }
   }
 }

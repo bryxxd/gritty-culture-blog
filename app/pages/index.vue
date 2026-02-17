@@ -1,12 +1,14 @@
 <script setup lang="ts">
-const { data: articlesData } = await useFetch("/api/articles");
-const articlesList = computed(() => articlesData.value?.articles.slice(0, 4) || []);
-
 const { getCinemaSelects } = useCinemaSelects();
 const { data: cinemaSelects } = await useAsyncData('cinemaSelects', () => getCinemaSelects());
 
-const { getFeaturedAlbum } = useFeaturedAlbum()
+const { getFeaturedAlbum } = useFeaturedAlbum();
 const { data: featuredAlbum } = await useAsyncData('featuredAlbums', () => getFeaturedAlbum());
+
+const { getArticles } = useArticles();
+const { data: articles } = await useAsyncData('articles', () => getArticles(4))
+
+
 </script>
 
 <template>
@@ -21,7 +23,7 @@ const { data: featuredAlbum } = await useAsyncData('featuredAlbums', () => getFe
 
   <section class="layout text-lg md:text-xl mt-[10px]">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-[10px]">
-      <ArticleList v-for="article in articlesList" :key="article.id" :article="article" />
+      <ArticleList v-for="article in articles" :key="article.id" :article="article" />
     </div>
     <NuxtLink to="/archive"
       class="block rounded-lg mt-[10px] bg-background-4 text-center text-paragraph-2 font-instrumentSerif italic py-4 md:py-6 lg:py-8 text-4xl md:text-[64px] lg:text-[80px] leading-none md:hover:bg-background-5 transition-colors duration-300 ease-out">

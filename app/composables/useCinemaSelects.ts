@@ -10,7 +10,6 @@ export const useCinemaSelects = () => {
           where: { orderby: { field: DATE, order: DESC } }
         ) {
           nodes {
-            id
             title
             cinemaFields {
               cinema_mood
