@@ -9,17 +9,17 @@
     <nav>
       <ul class="font-semibold text-paragraph-2 text-lg md:text-xl flex gap-2 flex-wrap justify-center py-4">
         <li>
-          <NuxtLink to="/"
+          <NuxtLink to="/" activeClass="active"
             class="inline-block px-3 py-2 md:py-3 bg-background-5 md:hover:bg-background-4 transition-colors duration-300 ease-out">
             Home</NuxtLink>
         </li>
         <li>
-          <NuxtLink to="/archive"
+          <NuxtLink to="/archive" activeClass="active"
             class="inline-block px-3 py-2 md:py-3 bg-background-6 rounded-full md:hover:bg-background-4 transition-colors duration-300 ease-out">
             Archive</NuxtLink>
         </li>
         <li>
-          <NuxtLink to="/about"
+          <NuxtLink to="/about" activeClass="active"
             class="inline-block px-3 py-2 md:py-3 bg-background-7 rounded-md md:hover:bg-background-4 transition-colors duration-300 ease-out">
             About</NuxtLink>
         </li>

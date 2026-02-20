@@ -6,7 +6,7 @@ const { getFeaturedAlbum } = useFeaturedAlbum();
 const { data: featuredAlbum } = await useAsyncData('featuredAlbums', () => getFeaturedAlbum());
 
 const { getArticles } = useArticles();
-const { data: articles } = await useAsyncData('articles', () => getArticles(4))
+const { data: articles } = await useAsyncData('articles-home', () => getArticles(4))
 
 
 </script>
@@ -22,13 +22,19 @@ const { data: articles } = await useAsyncData('articles', () => getArticles(4))
   </section>
 
   <section class="layout text-lg md:text-xl mt-[10px]">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-[10px]">
-      <ArticleList v-for="article in articles" :key="article.id" :article="article" />
-    </div>
-    <NuxtLink to="/archive"
-      class="block rounded-lg mt-[10px] bg-background-4 text-center text-paragraph-2 font-instrumentSerif italic py-4 md:py-6 lg:py-8 text-4xl md:text-[64px] lg:text-[80px] leading-none md:hover:bg-background-5 transition-colors duration-300 ease-out">
-      View all
-    </NuxtLink>
+    <template v-if="articles && articles.length > 0">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-[10px]">
+        <ArticleList v-for="article in articles" :key="article.id" :article="article" />
+      </div>
+      <NuxtLink to="/archive"
+        class="block rounded-lg mt-[10px] bg-background-4 text-center text-paragraph-2 font-instrumentSerif italic py-4 md:py-6 lg:py-8 text-4xl md:text-[64px] lg:text-[80px] leading-none md:hover:bg-background-5 transition-colors duration-300 ease-out">
+        View all
+      </NuxtLink>
+    </template>
+    <template v-else>
+      <NoPost message="No articles available." />
+    </template>
+
   </section>
 
   <section class="layout mt-[10px] rounded-lg">
@@ -39,19 +45,24 @@ const { data: articles } = await useAsyncData('articles', () => getArticles(4))
         Featured<br />
         Album
       </h2>
-      <template v-for="value in featuredAlbum" :key="value.id">
-        <div class="relative mx-auto max-w-[255px] md:max-w-[600px] lg:max-w-[840px] -mt-[10px] lg:-mt-[30px]">
-          <img :src="value.albumFields.album_cover.node.sourceUrl" :alt="value.albumFields.album_cover.node.altText"
-            class="w-full shadow-[0px_-20px_20px_0px_rgba(0,_0,_0,_0.25)]" />
-          <div class="mt-8 text-lg md:text-xl text-center">
-            <h3 class="mb-2">{{ value.title }} by {{ value.albumFields.album_artist }}</h3>
-            <NuxtLink
-              class="before:content[''] before:bg-[url('~/assets/img/index/featured-play.svg')] before:bg-no-repeat before:bg-contain before:inline-block before:w-[14px] before:h-[14px] inline-flex items-center md:hover:opacity-50 transition-opacity duration-300 ease-out"
-              :to="value.albumFields.album_url" target="_blank" rel="ugc">Listen now</NuxtLink>
+      <template v-if="featuredAlbum && featuredAlbum.length > 0">
+        <template v-for="value in featuredAlbum" :key="value.id">
+          <div class="relative mx-auto max-w-[255px] md:max-w-[600px] lg:max-w-[840px] -mt-[10px] lg:-mt-[30px]">
+            <NuxtImg :src="value.albumFields?.album_cover?.node.sourceUrl"
+              :alt="value.albumFields?.album_cover?.node.altText" placeholder
+              class="w-full shadow-[0px_-20px_20px_0px_rgba(0,_0,_0,_0.25)]" />
+            <div class="mt-8 text-lg md:text-xl text-center">
+              <h3 class="mb-2">{{ value.title }} by {{ value.albumFields?.album_artist }}</h3>
+              <NuxtLink
+                class="before:content[''] before:bg-[url('~/assets/img/index/featured-play.svg')] before:bg-no-repeat before:bg-contain before:inline-block before:w-[14px] before:h-[14px] inline-flex items-center md:hover:opacity-50 transition-opacity duration-300 ease-out"
+                :to="value.albumFields?.album_url" target="_blank" rel="ugc">Listen now</NuxtLink>
+            </div>
           </div>
-        </div>
+        </template>
       </template>
-
+      <template v-else>
+        <NoPost message="No featured album available." />
+      </template>
     </div>
   </section>
 
@@ -63,26 +74,33 @@ const { data: articles } = await useAsyncData('articles', () => getArticles(4))
         Selects
       </h2>
       <div class="overflow-y-scroll md:overflow-y-auto">
-        <table
-          class="table-fixed text-left text-lg md:text-xl mt-20 overflow-hidden md:overflow-auto w-[660px] md:w-full">
-          <thead class="text-paragraph-2 border-b-[1px] border-divider-1 border-dashed">
-            <tr class="grid grid-cols-[repeat(4,149px)] gap-4 md:grid-cols-[1fr,160px,344px,1fr]  opacity-60">
-              <th class="pb-3">Film</th>
-              <th class="pb-3">Year</th>
-              <th class="pb-3">Mood</th>
-              <th class="pb-3 text-right">Why watch</th>
-            </tr>
-          </thead>
-          <tbody class="text-paragraph-2 font-semibold">
-            <tr v-for="cinema in cinemaSelects" :key="cinema.id"
-              class="grid grid-cols-[repeat(4,149px)] gap-4 md:grid-cols-[1fr,160px,344px,1fr] border-b-[1px] border-divider-1 border-dashed">
-              <td class="py-4">{{ cinema.title }}</td>
-              <td class="py-4">{{ cinema.cinemaFields.cinema_year }}</td>
-              <td class="py-4">{{ cinema.cinemaFields.cinema_mood }}</td>
-              <td class="py-4 text-right">{{ cinema.cinemaFields.cinema_why_watch }}</td>
-            </tr>
-          </tbody>
-        </table>
+        <template v-if="cinemaSelects && cinemaSelects.length > 0">
+          <table
+            class="table-fixed text-left text-lg md:text-xl mt-20 overflow-hidden md:overflow-auto w-[660px] md:w-full">
+            <thead class="text-paragraph-2 border-b-[1px] border-divider-1 border-dashed">
+              <tr class="grid grid-cols-[repeat(4,149px)] gap-4 md:grid-cols-[1fr,160px,344px,1fr]  opacity-60">
+                <th class="pb-3">Film</th>
+                <th class="pb-3">Year</th>
+                <th class="pb-3">Mood</th>
+                <th class="pb-3 text-right">Why watch</th>
+              </tr>
+            </thead>
+            <tbody class="text-paragraph-2 font-semibold">
+              <template v-if="cinemaSelects && cinemaSelects.length > 0">
+                <tr v-for="cinema in cinemaSelects" :key="cinema.id"
+                  class="grid grid-cols-[repeat(4,149px)] gap-4 md:grid-cols-[1fr,160px,344px,1fr] border-b-[1px] border-divider-1 border-dashed">
+                  <td class="py-4">{{ cinema.title }}</td>
+                  <td class="py-4">{{ cinema.cinemaFields.cinema_year }}</td>
+                  <td class="py-4">{{ cinema.cinemaFields.cinema_mood }}</td>
+                  <td class="py-4 text-right">{{ cinema.cinemaFields.cinema_why_watch }}</td>
+                </tr>
+              </template>
+            </tbody>
+          </table>
+        </template>
+        <template v-else>
+          <NoPost message="No cinema selects available." class="text-paragraph-2" />
+        </template>
       </div>
     </div>
   </section>

@@ -2,11 +2,13 @@ export const useArticles = () => {
   const { graphqlFetch } = useWordPress();
 
   // Fetch all articles
-  const getArticles = async (limit = 10) => {
+  const getArticles = async (limit = 10, excludeIds: number[] = []) => {
     const query = `
-      query GetArticles($first: Int!) {
-        articles(first: $first, where: { orderby: { field: DATE, order: DESC }  }) {
+      query GetArticles($first: Int!, $excludeIds: [ID]) {
+        articles( where: { orderby: { field: DATE, order: DESC }, notIn: $excludeIds  }, first: $first) {
           nodes {
+            id
+            databaseId
             title
             slug
             date
@@ -14,10 +16,6 @@ export const useArticles = () => {
               node {
                 sourceUrl
                 altText
-                mediaDetails {
-                  width
-                  height
-                }
               }
             }
             terms {
@@ -29,7 +27,7 @@ export const useArticles = () => {
         }
       }
     `;
-    const { data } = await graphqlFetch(query, { first: limit });
+    const { data } = await graphqlFetch(query, { first: limit , excludeIds: excludeIds.map(String) });
     return data.articles.nodes;
   };
 
@@ -38,19 +36,10 @@ export const useArticles = () => {
     const query = `
       query GetArticleBySlug($slug: ID!) {
         article(id: $slug, idType: SLUG) {
+          databaseId
           title
           content
           date
-          featuredImage {
-            node {
-              sourceUrl
-              altText
-              mediaDetails {
-                width
-                height
-              }
-            }
-          }
           terms {
             nodes {
               name
