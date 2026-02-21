@@ -2,7 +2,7 @@
 
 <template>
 
-  <footer class="px-5 pt-10 pb-5 text-paragraph-1">
+  <footer class="px-5 pt-10 pb-5 text-paragraph-1 pop-up-anim">
     <div class="lg:flex lg:justify-between">
       <h2 class="text-footer-heading font-tiltWarp font-bold leading-none mix-blend-plus-lighter">Grain<br
           class="hidden lg:block"> Archive</h2>

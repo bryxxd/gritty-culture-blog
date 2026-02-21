@@ -1,16 +1,49 @@
 <script setup>
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-gsap.registerPlugin(ScrollTrigger)
+gsap.registerPlugin(ScrollTrigger);
 
 const route = useRoute();
 const isTopPage = computed(() => route.path === "/");
-const marqueeText =
-  "Independent writing on music, film, and visual culture—one deep cut at a time.";
+let tl;
 
+function onLoadAnim() {
+  tl.from("main", {
+    opacity: 0,
+    delay: 0.1,
+  }).from(
+    "#header",
+    {
+      opacity: 0,
+    },
+    ">0.4",
+  );
+}
+
+// function initScrollAnim() {
+//   const popUpElements = document.querySelectorAll(".pop-up-anim");
+//   popUpElements.forEach((elem) => {
+//     gsap.from(elem, {
+//       opacity: 0,
+//       duration: 0.6,
+//       ease: "power2.out",
+//       scrollTrigger: {
+//         trigger: elem,
+//         start: "top center",
+//         toggleActions: "play none none reverse",
+//       },
+//     });
+//   });
+// }
 
 onMounted(() => {
-  gsap.fromTo("#logo",
+  tl = gsap.timeline({
+    duration: 0.6,
+    ease: "none",
+  });
+
+  gsap.fromTo(
+    "#logo",
     { rotation: 0 },
     {
       rotation: 180,
@@ -21,14 +54,23 @@ onMounted(() => {
         start: "top top",
         end: "bottom bottom",
       },
-    }
-  )
-})
+    },
+  );
+  onLoadAnim();
+});
 
-watch(() => route.path, () => {
-  ScrollTrigger.refresh()
-})
+watch(
+  () => route.path,
+  async () => {
+    await nextTick();
+    ScrollTrigger.refresh();
 
+    tl?.kill();
+    tl = gsap.timeline({ duration: 0.6, ease: "none" });
+
+    onLoadAnim();
+  },
+);
 </script>
 
 <template>
@@ -36,8 +78,9 @@ watch(() => route.path, () => {
     class="pointer-events-none fixed inset-0 z-[9999] bg-[url('~/assets/img/bg-noise.png')] bg-repeat bg-[length:100%_100px] mix-blend-difference opacity-50"
     aria-hidden="true" />
 
-  <Marquee :marquee-text="marqueeText" :class="isTopPage ? 'block' : 'hidden'" />
-  <Header />
+  <Marquee marquee-text="Independent writing on music, film, and visual culture—one deep cut at a time."
+    :class="isTopPage ? 'block' : 'hidden'" />
+  <Header id="header" />
 
   <main :class="isTopPage ? 'mt-[-84px]' : 'mt-0'">
     <slot />
@@ -45,5 +88,4 @@ watch(() => route.path, () => {
 
   <Subscribe />
   <Footer />
-
 </template>

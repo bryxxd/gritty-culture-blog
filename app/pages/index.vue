@@ -21,7 +21,7 @@ const { data: articles } = await useAsyncData('articles-home', () => getArticles
       class="absolute w-full bottom-[20px] left-0 right-0 mx-auto px-[20px] md:px-[30px]" />
   </section>
 
-  <section class="layout text-lg md:text-xl mt-[10px]">
+  <section class="layout text-lg md:text-xl mt-[10px] mv">
     <template v-if="articles && articles.length > 0">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-[10px]">
         <ArticleList v-for="article in articles" :key="article.id" :article="article" />
@@ -37,7 +37,7 @@ const { data: articles } = await useAsyncData('articles-home', () => getArticles
 
   </section>
 
-  <section class="layout mt-[10px] rounded-lg">
+  <section class="layout mt-[10px] rounded-lg pop-up-anim">
     <div
       class="bg-[url('~/assets/img/index/featured-bg.jpg')] bg-cover bg-center bg-no-repeat pt-[60px] px-[10px] pb-10 md:py-[60px]">
       <h2
@@ -66,7 +66,7 @@ const { data: articles } = await useAsyncData('articles-home', () => getArticles
     </div>
   </section>
 
-  <section class="layout mt-[10px]">
+  <section class="layout mt-[10px] pop-up-anim">
     <div class="py-10 px-[10px] md:py-[60px] bg-background-3 rounded-lg">
       <h2
         class="text-[clamp(64px,20vw,160px)]/[80%] text-paragraph-2 font-tiltWarp font-bold mix-blend-plus-dark tracking-tight">

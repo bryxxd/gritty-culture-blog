@@ -7,7 +7,7 @@ import "swiper/css";
 
 </script>
 <template>
-    <HeaderSection title="About" />
+    <HeaderSection title="About"/>
 
     <section>
         <swiper :slides-per-view="3" :space-between="36"  >
@@ -48,7 +48,7 @@ import "swiper/css";
         </div>
     </section>
 
-    <section class="layout">
+    <section class="layout pop-up-anim">
         <div class="pt-[64px] md:py-[120px] text-xl font-semibold flex flex-col items-center md:flex-row gap-[64px] md:gap-[10px]">
             <figure>
                 <picture>

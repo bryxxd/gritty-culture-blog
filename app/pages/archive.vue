@@ -3,10 +3,9 @@
 const { getArticles } = useArticles();
 const { data: articles } = await useAsyncData('articles-archive', () => getArticles());
 
-const marqueeText = "End of reel   ·  Fin  ·  "
 </script>
 <template>
-    <HeaderSection title="Archive" />
+    <HeaderSection title="Archive"/>
 
     <section class="layout text-lg md:text-xl mt-[10px]">
         <template v-if="articles && articles.length > 0">
@@ -19,7 +18,7 @@ const marqueeText = "End of reel   ·  Fin  ·  "
         </template>
     </section>
 
-    <Marquee :marquee-text="marqueeText"
+    <Marquee marquee-text="End of reel   ·  Fin  ·  "
         custom-class="text-[40px] md:text-[64px] lg:text-[80px] py-[64px] md:py-[80px] lg:py-[120px] font-instrumentSerif italic" />
 
 </template>
