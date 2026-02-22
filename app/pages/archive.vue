@@ -5,17 +5,19 @@ const { data: articles } = await useAsyncData('articles-archive', () => getArtic
 
 </script>
 <template>
-    <HeaderSection title="Archive"/>
+    <HeaderSection title="Archive" />
 
-    <section class="layout text-lg md:text-xl mt-[10px]">
-        <template v-if="articles && articles.length > 0">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-[10px]">
-                <ArticleList v-for="article in articles" :key="article.id" :article="article" />
-            </div>
-        </template>
-        <template v-else>
-            <NoPost message="No articles available." class="text-paragraph-2" />
-        </template>
+    <section class=" text-lg md:text-xl mt-[10px]">
+        <div class="layout">
+            <template v-if="articles && articles.length > 0">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-[10px]">
+                    <ArticleList v-for="article in articles" :key="article.id" :article="article" />
+                </div>
+            </template>
+            <template v-else>
+                <NoPost message="No articles available." class="text-paragraph-2" />
+            </template>
+        </div>
     </section>
 
     <Marquee marquee-text="End of reel   ·  Fin  ·  "
