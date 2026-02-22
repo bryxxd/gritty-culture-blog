@@ -20,22 +20,6 @@ function onLoadAnim() {
   );
 }
 
-// function initScrollAnim() {
-//   const popUpElements = document.querySelectorAll(".pop-up-anim");
-//   popUpElements.forEach((elem) => {
-//     gsap.from(elem, {
-//       opacity: 0,
-//       duration: 0.6,
-//       ease: "power2.out",
-//       scrollTrigger: {
-//         trigger: elem,
-//         start: "top center",
-//         toggleActions: "play none none reverse",
-//       },
-//     });
-//   });
-// }
-
 onMounted(() => {
   tl = gsap.timeline({
     duration: 0.6,
@@ -63,12 +47,11 @@ watch(
   () => route.path,
   async () => {
     await nextTick();
-    ScrollTrigger.refresh();
-
     tl?.kill();
     tl = gsap.timeline({ duration: 0.6, ease: "none" });
 
     onLoadAnim();
+    ScrollTrigger.refresh();
   },
 );
 </script>

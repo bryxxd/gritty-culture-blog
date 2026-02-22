@@ -41,7 +41,7 @@ const { data: articles } = await useAsyncData('articles-home', () => getArticles
 
   </section>
 
-  <section class="mt-[10px] rounded-lg pop-up-anim">
+  <section class="mt-[10px] rounded-lg">
     <div class="layout">
       <div
         class="bg-[url('~/assets/img/index/featured-bg.jpg')] bg-cover bg-center bg-no-repeat pt-[60px] px-[10px] pb-10 md:py-[60px]">
@@ -72,7 +72,7 @@ const { data: articles } = await useAsyncData('articles-home', () => getArticles
     </div>
   </section>
 
-  <section class="mt-[10px] pop-up-anim">
+  <section class="mt-[10px]">
     <div class="layout">
       <div class="py-10 px-[10px] md:py-[60px] bg-background-3 rounded-lg">
         <h2

@@ -2,7 +2,7 @@
 
 <template>
   <div
-    class="bg-[url('~/assets/img/index/subscribed-bg.png')] bg-cover bg-top bg-no-repeat pt-[180px] pb-[40px] md:pb-[80px] pop-up-anim">
+    class="bg-[url('~/assets/img/index/subscribed-bg.png')] bg-cover bg-top bg-no-repeat pt-[180px] pb-[40px] md:pb-[80px]">
     <div class="layout">
       <div class="px-[30px]">
         <div

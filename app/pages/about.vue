@@ -52,7 +52,7 @@ import "swiper/css";
         </div>
     </section>
 
-    <section class="pop-up-anim">
+    <section>
         <div class="layout">
             <div
                 class="pt-[64px] md:py-[120px] text-xl font-semibold flex flex-col items-center md:flex-row gap-[64px] md:gap-[10px]">
