@@ -1,4 +1,13 @@
 <script setup lang="ts">
+useHead({
+    title: 'Archive',
+    meta: [
+        {
+            name: 'description',
+            content: 'Explore the Gritty Culture Blog archive, featuring a comprehensive collection of articles on music, film, and culture. Dive into our extensive library of in-depth analyses, reviews, and cultural commentary.',
+        },
+    ],
+});
 
 const { getArticles } = useArticles();
 const { data: articles } = await useAsyncData('articles-archive', () => getArticles());

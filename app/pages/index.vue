@@ -1,4 +1,14 @@
 <script setup lang="ts">
+useHead({
+  title: 'Home',
+  meta: [
+    {
+      name: 'description',
+      content: 'Welcome to Gritty Culture Blog, your go-to source for in-depth articles on music, film, and culture. Explore our latest posts, featured albums, and cinema selects.',
+    },
+  ],
+});
+
 const { getCinemaSelects } = useCinemaSelects();
 const { data: cinemaSelects } = await useAsyncData('cinemaSelects', () => getCinemaSelects());
 
@@ -6,9 +16,7 @@ const { getFeaturedAlbum } = useFeaturedAlbum();
 const { data: featuredAlbum } = await useAsyncData('featuredAlbums', () => getFeaturedAlbum());
 
 const { getArticles } = useArticles();
-const { data: articles } = await useAsyncData('articles-home', () => getArticles(4))
-
-
+const { data: articles } = await useAsyncData('articles-home', () => getArticles(4));
 </script>
 
 <template>

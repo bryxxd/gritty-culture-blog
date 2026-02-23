@@ -1,4 +1,13 @@
 <script setup lang="ts">
+useHead({
+    title: 'About',
+    meta: [
+        {
+            name: 'description',
+            content: 'Learn about the Gritty Culture Blog, a personal project by Casey Moth dedicated to exploring the fuzz, fragments, and found moments in music, film, and visual culture. Discover the story behind the blog and how to get in touch.',
+        },
+    ],
+});
 // Import Swiper Vue.js components
 import { Swiper, SwiperSlide } from "swiper/vue";
 
