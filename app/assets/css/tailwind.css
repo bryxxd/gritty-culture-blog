@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply min-w-[300px]
+  }
+
+  body {
+    @apply text-headline-1 bg-background-1 cursor-default-default;
+  }
+
+  a,
+  button {
+    @apply cursor-default-pointer;
+  }
+}
+
+@layer components {
+  .layout {
+    @apply max-w-xl mx-auto px-[10px];
+  }
+
+  .cms-rich-text {
+    h2 {
+      @apply text-[clamp(24px,3vw,20px)]/[80%;] font-tiltWarp;
+    }
+
+    p {
+        @apply text-[clamp(20px,2.5vw,16px)]/[140%] my-12;
+    }
+  }
+}
