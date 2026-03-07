@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    @apply min-w-[300px]
+  }
+
   body {
     @apply text-headline-1 bg-background-1 cursor-default-default;
   }

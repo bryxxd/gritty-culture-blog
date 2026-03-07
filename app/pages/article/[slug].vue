@@ -28,10 +28,10 @@ const { data: moreArticles } = await useAsyncData(
       :title="article?.title"
     />
     <p
-      class="text-center font-instrumentSerif italic text-[clamp(40px,8vw,80px)] flex items-center justify-center gap-6"
+      class="text-center font-instrumentSerif italic text-[clamp(40px,8vw,80px)] flex items-start justify-center gap-6"
     >
       <span>{{ article?.terms.nodes[0]?.name }}</span>
-      <span>·</span>;'. '
+      <span>·</span>
       <NuxtTime
         :datetime="article?.date"
         year="numeric"
