@@ -22,7 +22,7 @@ const { data: articles } = await useAsyncData('articles-home', () => getArticles
 <template>
   <section class="mv">
     <div class="layout relative">
-      <video autoplay muted loop playsinline class="rounded-lg w-full h-[640px] md:h-[calc(100vh-70px)] object-cover">
+      <video autoplay muted loop playsinline class="rounded-lg w-full h-[calc(100vh-60px)] md:h-[calc(100vh-70px)] object-cover">
         <source src="~/assets/video/mv-video.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
