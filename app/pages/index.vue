@@ -58,20 +58,18 @@ const { data: articles } = await useAsyncData('articles-home', () => getArticles
           Featured<br />
           Album
         </h2>
-        <template v-if="featuredAlbum && featuredAlbum.length > 0">
-          <template v-for="value in featuredAlbum" :key="value.id">
-            <div class="relative mx-auto max-w-[255px] md:max-w-[600px] lg:max-w-[840px] -mt-[10px] lg:-mt-[30px]">
-              <NuxtImg :src="value.albumFields?.album_cover?.node.sourceUrl"
-                :alt="value.albumFields?.album_cover?.node.altText" placeholder
-                class="w-full shadow-[0px_-20px_20px_0px_rgba(0,_0,_0,_0.25)]" />
-              <div class="mt-8 text-lg md:text-xl text-center">
-                <h3 class="mb-2">{{ value.title }} by {{ value.albumFields?.album_artist }}</h3>
-                <NuxtLink
-                  class="before:content[''] before:bg-[url('~/assets/img/index/featured-play.svg')] before:bg-no-repeat before:bg-contain before:inline-block before:w-[14px] before:h-[14px] inline-flex items-center md:hover:opacity-50 transition-opacity duration-300 ease-out"
-                  :to="value.albumFields?.album_url" target="_blank" rel="ugc">Listen now</NuxtLink>
-              </div>
+        <template v-if="featuredAlbum">
+          <div class="relative mx-auto max-w-[255px] md:max-w-[600px] lg:max-w-[840px] -mt-[10px] lg:-mt-[30px]">
+            <NuxtImg :src="featuredAlbum.albumFields?.album_cover?.node.sourceUrl"
+              :alt="featuredAlbum.albumFields?.album_cover?.node.altText" placeholder
+              class="w-full shadow-[0px_-20px_20px_0px_rgba(0,_0,_0,_0.25)]" />
+            <div class="mt-8 text-lg md:text-xl text-center">
+              <h3 class="mb-2">{{ featuredAlbum.title }} by {{ featuredAlbum.albumFields?.album_artist }}</h3>
+              <NuxtLink
+                class="before:content[''] before:bg-[url('~/assets/img/index/featured-play.svg')] before:bg-no-repeat before:bg-contain before:inline-block before:w-[14px] before:h-[14px] inline-flex items-center md:hover:opacity-50 transition-opacity duration-300 ease-out"
+                :to="featuredAlbum.albumFields?.album_url" target="_blank" rel="ugc">Listen now</NuxtLink>
             </div>
-          </template>
+          </div>
         </template>
         <template v-else>
           <NoPost message="No featured album available." />
