@@ -51,7 +51,7 @@
             </ul>
           </div>
         </div>
-        <p class="text-sm md:text-right mt-20 md:mt-0">©2025 Grain Archive<br>Words, images, and signals from the edge
+        <p class="text-sm md:text-right mt-20 md:mt-0">©<NuxtTime :datetime="Date.now()" year="numeric" /> Grain Archive<br>Words, images, and signals from the edge
         </p>
       </div>
 

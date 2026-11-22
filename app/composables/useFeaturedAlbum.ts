@@ -4,19 +4,10 @@ export const useFeaturedAlbum = () => {
   // Fetch the currently featured album
   const getFeaturedAlbum = async () => {
     const query = `
-      query GetFeaturedAlbum {
+      query GetFeaturedAlbum($first: Int!) {
         featuredAlbums(
-          first: 1
-          where: { 
-            orderby: { field: DATE, order: DESC }
-            metaQuery: {
-              metaArray: {
-                key: "album_is_featured"
-                value: "1"
-                compare: EQUAL_TO
-              }
-            }
-          }
+          first: $first
+          where: { orderby: { field: DATE, order: DESC } }
         ) {
           nodes {
             id
@@ -36,9 +27,12 @@ export const useFeaturedAlbum = () => {
         }
       }
     `
-    
-    const { data } = await graphqlFetch(query)
-    return data.featuredAlbums.nodes || null
+
+    // No WPGraphQL Meta Query plugin installed, so fetch recent albums
+    // and pick the featured one client-side instead of filtering server-side.
+    const { data } = await graphqlFetch(query, { first: 10 })
+    const nodes = data.featuredAlbums.nodes || []
+    return nodes.find((album: any) => !!album.albumFields?.album_is_featured) || null
   }
   
   return {
